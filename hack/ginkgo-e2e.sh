@@ -140,10 +140,11 @@ fi
 # The --host setting is used only when providing --auth_config
 # If --kubeconfig is used, the host to use is retrieved from the .kubeconfig
 # file and the one provided with --host is ignored.
+
 # Add path for things like running kubectl binary. 
 PATH=$(dirname "${e2e_test}"):"${PATH}"
 export PATH
-"${ginkgo}" "${ginkgo_args[@]:+${ginkgo_args[@]}}" "${e2e_test}" -- \
+"${ginkgo}" "${ginkgo_args[@]:+${ginkgo_args[@]}}" $GOPATH/src/github.com/ovn-org/ovn-kubernetes/test/e2e -- \
   "${auth_config[@]:+${auth_config[@]}}" \
   --ginkgo.flakeAttempts="${FLAKE_ATTEMPTS}" \
   --host="${KUBE_MASTER_URL}" \
@@ -173,3 +174,4 @@ export PATH
   ${E2E_REPORT_DIR:+"--report-dir=${E2E_REPORT_DIR}"} \
   ${E2E_REPORT_PREFIX:+"--report-prefix=${E2E_REPORT_PREFIX}"} \
   "${@:-}"
+
