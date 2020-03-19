@@ -145,7 +145,7 @@ fi
 PATH=$(dirname "${e2e_test}"):"${PATH}"
 export PATH
 pushd $GOPATH/src/github.com/ovn-org/ovn-kubernetes/test/e2e
-"${ginkgo}" "${ginkgo_args[@]:+${ginkgo_args[@]}}" -- \
+GO111MODULE=on "${ginkgo}" "${ginkgo_args[@]:+${ginkgo_args[@]}}" -- \
   "${auth_config[@]:+${auth_config[@]}}" \
   --ginkgo.flakeAttempts="${FLAKE_ATTEMPTS}" \
   --host="${KUBE_MASTER_URL}" \
