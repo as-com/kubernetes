@@ -144,7 +144,8 @@ fi
 # Add path for things like running kubectl binary. 
 PATH=$(dirname "${e2e_test}"):"${PATH}"
 export PATH
-"${ginkgo}" "${ginkgo_args[@]:+${ginkgo_args[@]}}" $GOPATH/src/github.com/ovn-org/ovn-kubernetes/test/e2e -- \
+pushd $GOPATH/src/github.com/ovn-org/ovn-kubernetes/test/e2e
+"${ginkgo}" "${ginkgo_args[@]:+${ginkgo_args[@]}}" -- \
   "${auth_config[@]:+${auth_config[@]}}" \
   --ginkgo.flakeAttempts="${FLAKE_ATTEMPTS}" \
   --host="${KUBE_MASTER_URL}" \
